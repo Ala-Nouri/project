@@ -1,0 +1,119 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+
+
+  <title>Create event</title>  
+
+<link href="{% static './css/main.82cfd66e.css'%}" rel="stylesheet"></head>
+
+<body>
+
+
+<header class="">
+  <div class="navbar navbar-default visible-xs">
+    <button type="button" class="navbar-toggle collapsed">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+
+  <nav class="sidebar">
+    <div class="navbar-collapse"required name="navbar-collapse">
+      <div class="site-header hidden-xs">
+          <a class="site-brand" href="{% url 'index' %}" title="">
+            <img class="img-responsive site-logo" alt="" src="{% static './images/issat.jpg'%}">
+          </a>
+      </div>
+      <ul class="nav">
+        <li><a href="{% url 'index' %}" title="">Home</a></li>
+         {% if user.is_admin%}
+        <li><a href="{% url 'admin:index' %}" title="">manage</a></li>
+        {% endif %}
+        <li><a href="{% url 'about' %}" title="">About</a></li>
+        <li><a href="{% url 'clubs' %}" title="">Clubs</a></li>
+        <li><a href="{% url 'contact' %}" title="">Contact</a></li>
+        {% if user.is_club%}
+        <li><a href="{% url 'my club' user.id %}" title="">My club</a></li>
+        {% endif %}
+        <li><a href="{% url 'signout' %}" title="">Logout</a></li>
+
+      </ul>
+
+      <nav class="nav-footer">
+      <h5>Follow us on social networks</h5>
+        <p class="nav-footer-social-buttons">
+          <a class="fa-icon" href="https://www.facebook.com/IssatSo" title="">
+            <i class="fa fa-facebook"></i>
+          </a>
+          <a class="fa-icon" href="http://www.issatso.rnu.tn/fo/index.php" title="">
+            <i class="fa fa-chrome "></i>
+          </a>
+        </p>
+      </nav>  
+    </div> 
+  </nav>
+</header>
+<main class=""required name="main-collapse">
+
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="section-container-spacer">
+      <h1>Create your event</h1>
+    </div>
+    <div class="section-container-spacer">
+       <form action="" class="reveal-content" method="POST" enctype="multipart/form-data">
+       {% csrf_token %}
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+              <h5 class=""> Title</h5> 
+                {{ form.title }}
+
+              </div>
+              <div class="form-group">
+              <h5 class=""> description</h5>
+              {{ form.description }}
+              </div>
+              <div class="form-group">
+               <h5 class=""> place</h5>
+              {{ form.place }}
+              </div>
+              <div class="form-group">
+               <h5 class=""> date</h5> 
+                {{ form.date }}
+              </div>
+              <div class="form-group">
+                <h5 class=""> poster</h5>
+                {{ form.poster }}
+              </div>
+              
+                
+              <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+        </form>
+    </div>
+  </div>
+</div>
+
+
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", function (event) {
+  navbarToggleSidebar();
+  navActivePage();
+});
+</script>
+
+<script type="text/javascript" src="{% static './js/main.85741bff.js'%}"></script></body>
+
+</html>
+
+</html>

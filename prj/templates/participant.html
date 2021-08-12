@@ -1,0 +1,114 @@
+{% load static %}
+{% static 'images' as baseUrl%}
+<!DOCTYPE html>
+<html lang="en">
+
+ <head> 
+
+
+
+  <title>Participants</title>
+   
+
+<link href="{% static './css/main.82cfd66e.css'%}" rel="stylesheet"></head>
+
+<body>
+   
+
+<header class="">
+  <div class="navbar navbar-default visible-xs">
+    <button type="button" class="navbar-toggle collapsed">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+
+  <nav class="sidebar">
+    <div class="navbar-collapse" id="navbar-collapse">
+      <div class="site-header hidden-xs">
+          <a class="site-brand" href="{% url 'index' %}" title="">
+            <img class="img-responsive site-logo" alt="" src="{% static './images/issat.jpg'%}">
+            
+          </a>
+    
+      </div>
+      
+      <ul class="nav">
+        <li><a href="{% url 'index' %}" title="">Home</a></li>
+        {% if user.is_admin%}
+        <li><a href="{% url 'admin:index' %}" title="">manage</a></li>
+        {% endif %}
+        <li><a href="{% url 'about' %}" title="">About</a></li>
+        <li><a href="{% url 'clubs' %}" title="">Clubs</a></li>
+        <li><a href="{% url 'contact' %}" title="">Contact</a></li>
+        {% if user.is_club%}
+        <li><a href="{% url 'my club' user.id %}" title="">My club</a></li>
+        {% endif %}
+        <li><a href="{% url 'signout' %}" title="">Logout</a></li>
+        
+
+      </ul>
+
+      <nav class="nav-footer">
+        <p class="nav-footer-social-buttons">
+        <h5>Follow us on social networks</h5>
+          <a class="fa-icon" href="https://www.facebook.com/IssatSo" title="">
+            <i class="fa fa-facebook"></i>
+          </a>
+          <a class="fa-icon" href="http://www.issatso.rnu.tn/fo/index.php" title="">
+            <i class="fa fa-chrome "></i>
+          </a>
+        </p>
+      </nav>  
+    </div> 
+  </nav>
+</header>
+<main class="" id="main-collapse">
+<div>
+<center><h3>Participants</h3></center>
+<center><h5>total:{{total}}</h5>  </center>
+</div>
+ <div class="hero-full-wrapper">
+  
+ <table style="width:100%" >
+ <tr>
+    <td><center><h6> Name</h6></center></td>
+    <td><center><h6> Email</h6</center>></td>
+    
+    
+  
+  {%for eventc in events%}
+
+ <tr>
+    <td> <center>{{eventc.user.first_name}} {{eventc.user.last_name}}</center></td>
+    <td> <center>{{eventc.user.email}}</center></td>
+    
+    
+  </tr>
+  {% endfor %}
+
+</table>
+
+</div>
+
+
+
+
+
+</main>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function (event) {
+  navbarToggleSidebar();
+  navActivePage();
+});
+</script>
+
+
+<script type="text/javascript" src="{% static './js/main.85741bff.js'%}"></script></body>
+
+</html>
